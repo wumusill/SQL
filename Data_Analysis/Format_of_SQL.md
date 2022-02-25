@@ -37,7 +37,7 @@ SELECT * FROM copang_main.member;
 * 데이터베이스 이름 뒤에 점(.)을 붙이고 그 다음에 테이블 이름 작성
 * 실무에서는 서로 다른 데이터베이스에, 같은 이름의 테이블이 존재할 수도 있기 때문에 이렇게 써주는 것이 좋음
 
-####하지만 항상 그럴 필요는 없음
+>하지만 항상 그럴 필요는 없음
 ```sql
 USE copang_main;
 SELECT * FROM member; 
