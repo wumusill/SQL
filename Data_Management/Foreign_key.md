@@ -84,4 +84,25 @@ INSERT INTO review (course_id, star, comment)
 <br>
 
 
-5. Foreign Key 삭
+## 5. Foreign Key 삭제하는 방법
+* `SHOW CREATE TABLE` 구문을 통해 Foreign Key가 있는지 확인
+```sql
+SHOW CREATE TABLE review;
+
+CREATE TABLE `review` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `course_id` int DEFAULT NULL,
+  `star` int DEFAULT NULL,
+  `comment` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_review_table` (`course_id`),
+  CONSTRAINT `fk_review_table` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+```
+* 삭제하는 SQL 구문
+* MySQL에만 해당
+* `Oracle`, `SQL Server`에서는 `DROP CONSTRAINT`
+```sql
+ALTER TABLE review
+    DROP FOREIGN KEY fk_review_table; 
+```
