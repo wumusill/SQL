@@ -1,0 +1,26 @@
+-- 코드를 입력하세요
+SELECT 
+    MEMBER_NAME,
+    REVIEW_TEXT,
+    DATE_FORMAT(REVIEW_DATE, "%Y-%m-%d") AS REVIEW_DATE
+FROM REST_REVIEW AS a
+INNER JOIN (
+    SELECT
+        r.MEMBER_ID,
+        MEMBER_NAME,
+        COUNT(*) AS cnt
+    FROM REST_REVIEW AS r
+    LEFT JOIN MEMBER_PROFILE AS m
+    ON r.MEMBER_ID = m.MEMBER_ID
+    GROUP BY MEMBER_ID
+    HAVING cnt = (
+        SELECT
+            COUNT(*) AS cnt
+        FROM REST_REVIEW AS r
+        GROUP BY MEMBER_ID
+        ORDER BY cnt DESC
+        LIMIT 1
+    )
+) AS b
+ON a.MEMBER_ID = b.MEMBER_ID
+ORDER BY REVIEW_DATE, REVIEW_TEXT
