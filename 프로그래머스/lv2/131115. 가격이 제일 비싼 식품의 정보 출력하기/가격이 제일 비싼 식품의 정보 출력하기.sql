@@ -1,17 +1,18 @@
 -- 코드를 입력하세요
-# SELECT
-#     PRODUCT_ID,
-#     PRODUCT_NAME,
-#     PRODUCT_CD,
-#     CATEGORY,
-#     PRICE
-# FROM FOOD_PRODUCT
-# WHERE PRICE = (
-#     SELECT
-#         MAX(PRICE)
-#     FROM FOOD_PRODUCT
-# )
-
+-- 나의 답안
+SELECT
+    PRODUCT_ID,
+    PRODUCT_NAME,
+    PRODUCT_CD,
+    CATEGORY,
+    PRICE
+FROM FOOD_PRODUCT
+WHERE PRICE = (
+    SELECT
+        MAX(PRICE)
+    FROM FOOD_PRODUCT
+)
+-- 공유된 답안 중 간단하고 좋아보이는 방법
 SELECT
     *
 FROM FOOD_PRODUCT
