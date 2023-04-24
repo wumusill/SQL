@@ -1,0 +1,15 @@
+-- 코드를 입력하세요
+SELECT
+    DISTINCT a.CART_ID
+FROM (SELECT
+        CART_ID
+    FROM CART_PRODUCTS
+    WHERE NAME = 'Yogurt') AS a
+INNER JOIN (
+    SELECT
+        CART_ID
+    FROM CART_PRODUCTS
+    WHERE NAME = 'Milk'
+) AS b
+ON a.CART_ID = b.CART_ID
+ORDER BY CART_ID
