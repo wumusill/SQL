@@ -1,0 +1,26 @@
+-- 코드를 입력하세요
+SELECT
+    a.ANIMAL_ID,
+    a.ANIMAL_TYPE,
+    a.NAME
+FROM 
+    (
+    SELECT
+        ANIMAL_ID,
+        ANIMAL_TYPE,
+        NAME,
+        SEX_UPON_INTAKE
+FROM ANIMAL_INS
+WHERE SEX_UPON_INTAKE LIKE "Intact%"
+) AS a
+INNER JOIN (
+    SELECT
+        ANIMAL_ID,
+        ANIMAL_TYPE,
+        NAME,
+        SEX_UPON_OUTCOME
+    FROM ANIMAL_OUTS
+    WHERE SEX_UPON_OUTCOME LIKE "Spayed%" 
+        OR SEX_UPON_OUTCOME LIKE "Neutered%"
+) AS b
+ON a.ANIMAL_ID = b.ANIMAL_ID
